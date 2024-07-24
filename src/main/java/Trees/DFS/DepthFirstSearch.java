@@ -1,12 +1,10 @@
-package Trees.BFS;
+package Trees.DFS;
 
 import Trees.Node;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
-public class BreadThFirstSearch {
+public class DepthFirstSearch {
     public static void main(String[] args) {
         Node t1 = new Node(10);
         Node t2 = new Node(20);
@@ -31,28 +29,23 @@ public class BreadThFirstSearch {
         t7.left = t10;
         t7.right = t11;
 
-        bfsTraversal(t1);
-
+        dfsTraversal(t1);
 
     }
 
-    private static void bfsTraversal(Node root) {
-
-        Deque<Node> queue = new LinkedList<Node>();
-        queue.addLast(root);
+    private static void dfsTraversal(Node root) {
+        Stack<Node> stack = new Stack<Node>();
+        stack.push(root);
         root.visited = true;
-
-        while (!queue.isEmpty()){
-            Node n = queue.removeFirst();
-            System.out.print(n.id + " ");
-
-            while(true){
-               Node n1 = getAdjacentNodes(n);
-               if(n1==null){
-                   break;
-               }
-               queue.addLast(n1);
-               n1.visited = true;
+        System.out.print(root.id + " ");
+        while (!stack.isEmpty()){
+            Node n = getAdjacentNodes(stack.peek());
+            if(n==null){
+                stack.pop();
+            }else {
+                stack.push(n);
+                System.out.print(n.id + " ");
+                n.visited = true;
             }
         }
     }
@@ -66,4 +59,5 @@ public class BreadThFirstSearch {
         }
         return null;
     }
+
 }

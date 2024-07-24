@@ -55,6 +55,7 @@ public class ValidWordAbbreviation {
            // If abbreviated string has a number
            while(j<abbr.length() && abbr.charAt(j) >='0' && abbr.charAt(j) <='9'){
                j++;
+
            }
            int num = Integer.parseInt(abbr.substring(start,j));
             System.out.println(num);

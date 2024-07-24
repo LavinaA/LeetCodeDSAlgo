@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HorizontalLevelTraversal {
+public class VerticalLevelTraversal {
     public static void main(String[] args) {
         Node n1 = new Node(1);
         Node n2 = new Node(2);
@@ -24,16 +24,15 @@ public class HorizontalLevelTraversal {
 
         Map<Integer, List<Node>> map = new HashMap<Integer,List<Node>>();
 
-        map = horizontalTraversal(n1,map,1);
+        verticalLevelTraversal(n1,map,1);
 
         for(Map.Entry<Integer,List<Node>> entry : map.entrySet()){
             System.out.println("Level " + entry.getKey() +" has " +entry.getValue());
         }
-
-
 }
 
-    private static Map<Integer, List<Node>> horizontalTraversal(Node node , Map<Integer, List<Node>> map, int level) {
+    private static void verticalLevelTraversal(Node node, Map<Integer, List<Node>> map, int level) {
+
         if(node!=null) {
             if (map.get(level) == null) {
                 ArrayList list = new ArrayList();
@@ -43,10 +42,11 @@ public class HorizontalLevelTraversal {
                 List l = map.get(level);
                 l.add(node);
             }
-            horizontalTraversal(node.left,map,level+1);
-            horizontalTraversal(node.right,map,level+1);
+            verticalLevelTraversal(node.left,map,level-1);
+            verticalLevelTraversal(node.right,map,level+1);
 
         }
-return map;
-     }
-}
+
+
+    }
+    }
