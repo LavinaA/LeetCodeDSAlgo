@@ -11,7 +11,7 @@ Return the maximum profit you can achieve from this transaction. If you cannot a
 Example 1:
 
 Input: prices = [7,1,5,3,6,4]
-Output: 5
+Output: 5\
 Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
 Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
 Example 2:
@@ -24,9 +24,28 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 public class BestTimeToBuySellStock {
     public static void main(String[] args) {
         int prices[] = {7, 1, 5, 3, 6, 4};
-        int profit = maxProfit(prices);
+        int profit = maxProfit2(prices);
         System.out.println(" The profit is " + profit);
     }
+
+    private static int maxProfit2(int[] prices) {
+
+        int min = Integer.MAX_VALUE;
+        int maxProfit = Integer.MIN_VALUE;
+
+        //int prices[] = {5,3,1,2, 6,0};
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < min) {
+                min = prices[i];
+            }
+            else if (prices[i] - min > maxProfit) {
+                maxProfit = prices[i] - min;
+            }
+        }
+        return maxProfit;
+
+    }
+
     private static int maxProfit(int[] arr) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
@@ -56,4 +75,6 @@ public class BestTimeToBuySellStock {
         }
         return (max-min);
     }
+
+
 }
